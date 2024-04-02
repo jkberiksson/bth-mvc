@@ -22,12 +22,23 @@ För att köra projektet lokalt, följ dessa steg:
 
 3. Installera projektets beroenden:
 
-    ```bash
-    npm install   # eller använd `yarn install` om du använder Yarn
+````bash
+    composer install
     ```
 
-4. Starta programmet lokalt:
-   
+    ```bash
+    npm install
+    ```
+
+4. Bygg projektet:
+
+    ```bash
+        npm run build
+        ```
+
+5. Starta programmet lokalt:
+
    ```bash
     php -S localhost:8888 -t public
     ```
+````
