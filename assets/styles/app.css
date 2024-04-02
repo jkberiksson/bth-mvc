@@ -181,6 +181,12 @@ footer {
     gap: 1rem;
 }
 
+.report-answers div h4 {
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+    text-decoration: underline;
+}
+
 #kmom01,
 #kmom02,
 #kmom03,
