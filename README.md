@@ -1,5 +1,7 @@
 # MVC kurs 2024
 
+![Project Image](./public/img/php.png)
+
 ## Beskrivning
 
 En webbplats byggd med PHP-ramverkert Symfony. Innehåller me-sidan till mvc-kursen på BTH 2024. Allting sparas sedan i detta git-repo.
