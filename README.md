@@ -22,7 +22,7 @@ För att köra projektet lokalt, följ dessa steg:
 
 3. Installera projektets beroenden:
 
-````bash
+    ```bash
     composer install
     ```
 
@@ -33,12 +33,11 @@ För att köra projektet lokalt, följ dessa steg:
 4. Bygg projektet:
 
     ```bash
-        npm run build
-        ```
+    npm run build
+    ```
 
 5. Starta programmet lokalt:
 
-   ```bash
-    php -S localhost:8888 -t public
+    ```bash
+     php -S localhost:8888 -t public
     ```
-````
