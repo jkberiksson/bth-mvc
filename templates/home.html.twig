@@ -1,0 +1,27 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+<div class="home">
+    <h1>Home</h1>
+    <div class="home-img">
+        <img src="{{ asset('img/me.jpg') }}" alt="me">
+    </div>
+    <div class="home-intro">
+        <h3>Hi there!</h3>
+        <p>
+            I'm {{ name }}, a {{ age }}-year-old sports enthusiast living in {{ city }}. Sports are my passion, whether it's
+            hitting the gym, playing football,
+            or enjoying a round of golf. Currently, I'm delving into the world of MVC at BTH, eager to expand my skills in
+            software development.
+            Combining my love for sports with my newfound interest in tech is what drives me forward. When I'm not studying
+            or coding, you'll
+            likely find me on the field or the golf course, perfecting my game. I'm all about growth and learning, and I'm
+            excited to see where
+            this journey takes me in both sports and tech.
+        </p>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "base.html.twig" %}
+
+{% block title %}About{% endblock %}
+
+{% block body %}
+    <div class="about">
+        <h1>About</h1>
+        <div class="about-content">
+            <div class="about-left">
+                <p>
+                    In this course we are going to learn how to program webapplications in a objectoriented way with focus on the design-pattern MVC.
+                    To get started building this app we are going to use PHP and the framework Symfony which is one of the most popular PHP-frameworks.
+                </p>
+                <br>
+                <div>
+                    <a href="https://github.com/dbwebb-se/mvc" target="_blank">Link to course repo on github</a>
+                </div>
+                <div>
+                    <a href="https://github.com/jkberiksson/bth-mvc" target="_blank">Link to my repo on github</a>
+                </div>
+            </div>
+            <div class="about-right">
+                <img src="{{ asset('img/code.jpg') }}" alt="code">
+            </div>
+        </div>
+    </div>
+{% endblock %}

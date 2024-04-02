@@ -1,0 +1,14 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Api{% endblock %}
+
+{% block body %}
+    <div class="api">
+        <h1>API Routes</h1>
+        <ul>
+            {% for route, description in routes %}
+                <li>{{ route }} - {{ description }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
