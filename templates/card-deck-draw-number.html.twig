@@ -1,0 +1,18 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Card Deck Draw Number{% endblock %}
+
+{% block body %}
+<div class="card-deck-draw-number">
+    <h1>Card Deck Draw Number</h1>
+    <h3>{{ cardsLeftInDeck }} cards left in the deck</h3>
+    <div class="card-deck-wrapper">
+        {% for card in drawnCards %}
+            <div class="single-card">
+                <div>{{ card.getRank() }}</div>
+                <div>{{ card.getSuit() }}</div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

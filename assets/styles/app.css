@@ -48,6 +48,19 @@ h1 {
     margin-bottom: 1rem;
 }
 
+button {
+    margin-top: 1rem;
+    padding: 1rem 2rem;
+    background-color: #000000;
+    border: 2px solid #1A1A1A;
+    border-radius: 15px;
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: 600;
+    outline: none;
+    cursor: pointer;
+}
+
 /* Nav style */
 nav {
     background-color: #201f3e;
@@ -208,10 +221,63 @@ footer {
     width: 100%;
     text-align: center;
     margin-bottom: 1rem;
+    margin-top: 1rem;
 }
 
 .lucky img {
     height: 500px;
     border-radius: 10px;
     object-position: top;
+}
+
+/* Flash-msg style */
+.flash-notice {
+    padding: 0.5em;
+    color: #004085;
+    background-color: #cce5ff;
+    border-color: #b8daff;
+}
+
+.flash-warning {
+    padding: 0.5em;
+    color: #856404;
+    background-color: #fff3cd;
+    border-color: #ffeeba;
+}
+
+.flash-success {
+    padding: 0.5em;
+    color: #101010;
+    background-color: #1fca74;
+    border-color: #1fca74;
+}
+
+/* Cards styles */
+
+.card-deck-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.single-card {
+    height: 100px;
+    width: 30px;
+    border: 2px solid black;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 3rem;
+    font-size: 0.85rem;
+}
+
+.session h3 {
+    margin-top: 1rem;
+}
+
+.lucky .uml-img {
+    height: 100%;
+    width: 50%;
 }

@@ -1,0 +1,34 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Card{% endblock %}
+
+{% block body %}
+<div class="card">
+    <h1>Card</h1>
+    <ul>
+        <li>
+            <a href="{{ path('card/deck') }}">Card Deck</a>
+        </li>
+        <li>
+            <a href="{{ path('card/deck/shuffle') }}">Card Deck Shuffle</a>
+        </li>
+        <li>
+            <a href="{{ path('card/deck/draw') }}">Card Deck Draw</a>
+        </li>
+        <li>
+            <form method="post" action="{{ path('card/deck/draw/number/post') }}">
+                <label for="numInput">Enter number of cards to draw:</label>
+                <input type="number" id="numInput" name="num" min="1" required>
+                <button type="submit">Draw Cards</button>
+            </form>
+        </li>
+    </ul>
+    <div class="lucky">
+        <p>Jag har implementerat tre klasser, Card, DeckOfCards och DeckOfCardsWithJoker. Min Card klass är uppbyggd så att den tar två attribut, en valör och en symbol. 
+        I den klassen har jag också metoder som gör att man kan hämta enbart valör eller symbol. Det finns också en metod för att hämta valör och symbol som en sträng.
+        DeckOfCards skapar en kortlek med 52st kort. I den finns också ett antal metoder som gör att man kan manipulera kortleken på en del olika sätt. Sedan har jag också min DeckOfCardsWithJoker som extendar DeckOfCards.
+        Det enda den gör är att den lägger till två jokrar i kortleken.</p>
+        <img class="uml-img" src="{{ asset('img/mvc.png') }}" alt="mvc uml diagram">
+    </div>
+</div>
+{% endblock %}

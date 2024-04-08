@@ -1,0 +1,17 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Card Deck Shuffle{% endblock %}
+
+{% block body %}
+<div class="card-deck-shuffle">
+    <h1>Card Deck Shuffle</h1>
+    <div class="card-deck-wrapper">
+        {% for card in deckOfCards.getCards() %}
+            <div class="single-card">
+                <div>{{ card.getRank() }}</div>
+                <div>{{ card.getSuit() }}</div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

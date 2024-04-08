@@ -1,0 +1,20 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Session{% endblock %}
+
+{% block body %}
+<div class="session">
+    <h1>Session</h1>
+    {{ include('flash.html.twig') }}
+    <h3>Deck Of Cards:</h3>
+    {% if deckOfCards is not empty %}
+        {% for card in deckOfCards.getCards() %}
+            <span>{{ card.getAsString() }}</span>
+        {% endfor %}
+    {% endif %}
+    <form method="post" action="{{ path('session/delete') }}">
+        <input type="hidden" name="_method" value="DELETE">
+        <button type="submit">Clear Session</button>
+    </form>
+</div>
+{% endblock %}
