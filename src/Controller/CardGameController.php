@@ -55,15 +55,8 @@ class CardGameController extends AbstractController
     }
 
     #[Route('/card/deck/shuffle', name: "card/deck/shuffle")]
-    public function cardDeckShuffle(SessionInterface $session): Response
+    public function cardDeckShuffle(): Response
     {
-        /* if ($session->has("deckOfCards")) {
-            $deckOfCards = $session->get("deckOfCards");
-        } else {
-            $deckOfCards = new DeckOfCardsWithJoker();
-            $session->set("deckOfCards", $deckOfCards);
-        } */
-
         $deckOfCards = new DeckOfCardsWithJoker();
         $deckOfCards->shuffleCards();
 
