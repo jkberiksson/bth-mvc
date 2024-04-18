@@ -1,0 +1,36 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Play game{% endblock %}
+
+{% block body %}
+<div class="play-game game">
+    <h1>Blackjack</h1>
+    {{ include('flash.html.twig') }}
+    <h3>Din hand:</h3>
+    <div class="card-deck-wrapper">
+        {% for card in playerHand %}
+            <div class="single-card">
+                <div>{{ card.getRank() }}</div>
+                <div>{{ card.getSuit() }}</div>
+            </div>
+        {% endfor %}
+    </div>
+        <p>Nuvarande hand: {{ playerHandValue }}</p>
+
+    <h3>Dealerns hand:</h3>
+    <div class="card-deck-wrapper">
+        {% for card in dealerHand %}
+            <div class="single-card">
+                <div>{{ card.getRank() }}</div>
+                <div>{{ card.getSuit() }}</div>
+            </div>
+        {% endfor %}
+    </div>
+    <p>Nuvarande hand: {{ dealerHandValue }}</p>
+    <form action="{{ path('game/play/post') }}" method="post">
+        <button type="submit" name="action" value="hit">Hit</button>
+        <button type="submit" name="action" value="stand">Stand</button>
+        <button type="submit" name="action" value="restart">Restart</button>
+    </form>
+</div>
+{% endblock %}

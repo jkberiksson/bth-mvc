@@ -1,0 +1,41 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Game{% endblock %}
+
+{% block body %}
+<div class="game">
+    <h1>Game</h1>
+    <h3>Beskrivning</h3>
+    <p>
+        Spela ett spännande kortspel där målet är att få en hand med ett totalt kortvärde närmare 21 än dealerns hand, utan att gå över 21. Du får två kort i början och kan sedan välja att ta fler kort ("hit") eller stanna med din nuvarande hand ("stand"). Klädda kort är värda 10 poäng och ess kan vara antingen 1 eller 11. Vinn genom att slå dealern eller få Blackjack (21 med de första två korten). Lycka till!
+    </p>
+    <div class="rules-container">
+        <h3>Regler för Blackjack</h3>
+        <p><strong>Mål:</strong> Få en hand med ett totalt kortvärde närmare 21 än dealerns hand, utan att överstiga 21.</p>
+        <p><strong>Kortvärden:</strong></p>
+        <ul>
+            <li>Numrerade kort (2-10) är värda sina påskrivna värden.</li>
+            <li>Klädda kort (knekt, dam, kung) är värda 10 poäng var.</li>
+            <li>Ess kan vara värt antingen 1 eller 11 poäng.</li>
+        </ul>
+        <p><strong>Spelomgång:</strong></p>
+        <ul>
+            <li>Du och dealern får två kort var. Dealerns första kort är vanligtvis synligt medan det andra är dolt.</li>
+            <li>Du kan välja att "hit" (ta ett till kort) för att öka din hand eller "stand" (stanna) med din nuvarande hand.</li>
+        </ul>
+        <p><strong>Dealerns drag:</strong></p>
+        <ul>
+            <li>Dealern drar kort tills handens värde är 17 eller mer. Dealern måste stanna om handens värde är 17 eller mer.</li>
+        </ul>
+        <p><strong>Vinst och förlust:</strong></p>
+        <ul>
+            <li>Du vinner om din hand har ett totalt värde närmare 21 än dealerns hand.</li>
+            <li>Du förlorar om din hand överstiger 21 poäng.</li>
+        </ul>
+    </div>
+    <ul>
+    <li></li>
+    </ul>
+    <a href="/game/play">Starta spelet</a>
+</div>
+{% endblock %}
