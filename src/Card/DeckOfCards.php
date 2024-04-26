@@ -4,6 +4,7 @@ namespace App\Card;
 
 class DeckOfCards
 {
+    /** @var Card[] */
     private $cards = [];
 
     public function __construct()
@@ -18,6 +19,7 @@ class DeckOfCards
         }
     }
 
+    /** @return Card[] */
     public function getCards(): array
     {
         return $this->cards;
@@ -38,7 +40,7 @@ class DeckOfCards
         return count($this->cards);
     }
 
-    public function addCard(Card $card)
+    public function addCard(Card $card): void
     {
         $this->cards[] = $card;
     }

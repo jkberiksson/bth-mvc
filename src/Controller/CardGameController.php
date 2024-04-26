@@ -40,9 +40,9 @@ class CardGameController extends AbstractController
     #[Route('/card/deck', name: "card/deck")]
     public function cardDeck(SessionInterface $session): Response
     {
-        if ($session->has("deckOfCards")) {
-            $deckOfCards = $session->get("deckOfCards");
-        } else {
+        $deckOfCards = $session->get("deckOfCards");
+
+        if (!$deckOfCards) {
             $deckOfCards = new DeckOfCardsWithJoker();
             $session->set("deckOfCards", $deckOfCards);
         }
@@ -70,12 +70,12 @@ class CardGameController extends AbstractController
     #[Route('/card/deck/draw', name: "card/deck/draw")]
     public function cardDeckDraw(SessionInterface $session): Response
     {
-        if ($session->has("deckOfCards")) {
-            $deckOfCards = $session->get("deckOfCards");
-        } else {
+        $deckOfCards = $session->get("deckOfCards");
+
+        if (!$deckOfCards) {
             $deckOfCards = new DeckOfCardsWithJoker();
             $session->set("deckOfCards", $deckOfCards);
-        };
+        }
 
         $drawnCard = $deckOfCards->drawCard();
         $cardsLeftInDeck = $deckOfCards->cardsLeftInDeck();
@@ -91,12 +91,12 @@ class CardGameController extends AbstractController
     #[Route('/card/deck/draw/number/{num<\d+>}', name: "card/deck/draw/number")]
     public function cardDeckDrawNumber(SessionInterface $session, int $num): Response
     {
-        if ($session->has("deckOfCards")) {
-            $deckOfCards = $session->get("deckOfCards");
-        } else {
+        $deckOfCards = $session->get("deckOfCards");
+
+        if (!$deckOfCards) {
             $deckOfCards = new DeckOfCardsWithJoker();
             $session->set("deckOfCards", $deckOfCards);
-        };
+        }
 
         $drawnCards = [];
 

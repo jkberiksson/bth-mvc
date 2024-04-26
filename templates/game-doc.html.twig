@@ -1,0 +1,37 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Doc{% endblock %}
+
+{% block body %}
+<div class="doc">
+    <h1>Doc</h1>
+    <h3>Flödesschema:</h3>
+    <img class="flow-chart" src="{{ asset('img/flow-chart.png') }}" alt="flow chart">
+    <h3>Pseudokod:</h3>
+    <p>Starta Blackjack-spelet
+    <p>Blanda kortleken</p>
+    <p>Dela ut två kort till spelaren</p>
+    <p>Dela ut ett kort till dealern</p>
+    <p>Loopa tills spelaren stannar eller blir tjock (över 21):</p>
+    <p>Fråga spelaren om de vill ta ett till kort eller stanna</p>
+    <p>Om spelaren tar ett kort:</p>
+    <p>Ge spelaren ett till kort</p>
+    <p>Annars:</p>
+    <p>Spelaren stannar</p>
+    <p>Om spelaren är tjock (över 21):</p>
+    <p>Visa att spelaren har förlorat</p>
+    <p>Annars:</p>
+    <p>Loopa tills dealerns hand är totalt minst 17:</p>
+    <p>Ge kort till dealern</p>
+    <p>Om dealerns hand är mindre än 17:</p>
+    <p>Ge dealern ett till kort</p>
+    <p>Annars:</p>
+    <p>Dealern stannar</p>
+    <p>Om dealern är tjock (över 21) eller har lägre total än spelaren:</p>
+    <p>Visa att spelaren har vunnit</p>
+    <p>Annars:</p>
+    <p>Visa att spelaren har förlorat</p>
+    <h3>Klasser:</h3>
+    <p>Jag tänker att det räcker med två klasser för att lösa uppgiften. En som jag redan har sedan innan, <strong>DeckOfCards</strong> och sen en ny <strong>Blackjack</strong> som sköter själva spelet. Syftet med DeckOfCards är att den håller all funktionalitet för själva kortleken, dvs blanda, och dra kort. Blackjack-klassens syfte är att lösa delar som att ge kort till spelare och dealer men också räkna ut vem som vann.</p>
+</div>
+{% endblock %}

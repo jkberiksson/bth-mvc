@@ -4,8 +4,8 @@ namespace App\Card;
 
 class Card
 {
-    private $rank;
-    private $suit;
+    private string $rank;
+    private string $suit;
 
     public function __construct(string $rank, string $suit)
     {

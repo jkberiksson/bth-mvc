@@ -80,11 +80,12 @@ class Blackjack
     {
         if (in_array($rank, ['J', 'Q', 'K'])) {
             return 10;
-        } elseif ($rank === 'A') {
-            return 11;
-        } else {
-            return intval($rank);
         }
+
+        if ($rank === 'A') {
+            return 11;
+        }
+        return intval($rank);
     }
 
     public function calculateWinner(int $playerHandValue, int $dealerHandValue): string

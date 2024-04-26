@@ -20,6 +20,7 @@ class JsonApiController extends AbstractController
                 "/api/deck" => "Method: GET | Returnerar sorterad kortlek.",
                 "/api/deck/shuffle" => "Method: POST | Blandar kortleken och returnerar den samt spara i sessionen.",
                 "/api/deck/draw/:number" => "Method: POST | Drar antalet kort från kortleken och returnerar dom dragna korten samt antalet kort som finns kvar i kortleken.",
+                "/api/game" => "Method: GET | Visar upp aktuell ställning i blackjack.",
             ],
         ];
 
@@ -57,8 +58,9 @@ class JsonApiController extends AbstractController
         $deckOfCards = $deckOfCards->getCards();
 
         $cards = [];
+        $cardCount = count($deckOfCards);
 
-        for ($i = 0; $i < count($deckOfCards); $i++) {
+        for ($i = 0; $i < $cardCount; $i++) {
             array_push($cards, $deckOfCards[$i]->getAsString());
         };
 
@@ -87,8 +89,9 @@ class JsonApiController extends AbstractController
 
 
         $cards = [];
+        $cardCount = count($deckOfCards);
 
-        for ($i = 0; $i < count($deckOfCards); $i++) {
+        for ($i = 0; $i < $cardCount; $i++) {
             array_push($cards, $deckOfCards[$i]->getAsString());
         };
 
@@ -106,31 +109,47 @@ class JsonApiController extends AbstractController
     #[Route('/api/deck/draw/{num<\d+>}', name: "api/deck/draw/number", methods: ["POST"])]
     public function jsonDeckDrawNumber(SessionInterface $session, int $num): Response
     {
-        if ($session->has("deckOfCards")) {
-            $deckOfCards = $session->get("deckOfCards");
-        } else {
+        $deckOfCards = $session->get("deckOfCards");
+
+        if (!$deckOfCards) {
             $deckOfCards = new DeckOfCardsWithJoker();
             $session->set("deckOfCards", $deckOfCards);
-        };
+        }
 
         $drawnCards = [];
-        $cards = [];
 
         for ($i = 1; $i <= $num; $i++) {
             $drawnCard = $deckOfCards->drawCard();
-            $drawnCards[] = $drawnCard;
-        };
-
-        for ($i = 0; $i < count($drawnCards); $i++) {
-            array_push($cards, $drawnCards[$i]->getAsString());
-        };
+            $drawnCards[] = $drawnCard->getAsString();
+        }
 
         $cardsLeftInDeck = $deckOfCards->cardsLeftInDeck();
 
         $data = [
-            "drawnCards" => $cards,
+            "drawnCards" => $drawnCards,
             "cardsLeftInDeck" => $cardsLeftInDeck
         ];
+
+        $response = new JsonResponse($data);
+        $response->setEncodingOptions(
+            $response->getEncodingOptions() | JSON_PRETTY_PRINT
+        );
+        return $response;
+    }
+
+    #[Route('/api/game', name: "api/game", methods: ["GET"])]
+    public function jsonGame(SessionInterface $session): Response
+    {
+        $blackjack = $session->get("blackjack");
+
+        $data = [];
+
+        if ($blackjack) {
+            $data = [
+                'Player hand' => $blackjack->calculateHandValue($blackjack->getPlayerHand()),
+                'Dealer hand' => $blackjack->calculateHandValue($blackjack->getDealerHand()),
+            ];
+        }
 
         $response = new JsonResponse($data);
         $response->setEncodingOptions(

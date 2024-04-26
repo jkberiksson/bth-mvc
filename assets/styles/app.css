@@ -314,3 +314,11 @@ footer {
   color: #eee;
   display: inline-block;
 }
+
+.doc h3 {
+  margin-top: 1rem;
+}
+
+.flow-chart {
+  width: 600px;
+}
