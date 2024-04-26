@@ -7,7 +7,9 @@
         <h1>API Routes</h1>
         <ul>
             {% for route, description in routes %}
-                <li><code>{{ route }}</code> - {{ description }}</li>
+                <li>
+                    <a href="{{route}}"><code>{{ route }}</code></a> - {{ description }}
+                </li>
             {% endfor %}
         </ul>
     </div>

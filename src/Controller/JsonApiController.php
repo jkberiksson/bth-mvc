@@ -16,18 +16,18 @@ class JsonApiController extends AbstractController
     {
         $data = [
             'routes' => [
-                "/api/qoute" => "Method: GET | Slumpar fram ett citat av tre möjliga och returnerar det tillsammans med dagens datum och timestamp.",
-                "/api/deck" => "Method: GET | Returnerar sorterad kortlek.",
-                "/api/deck/shuffle" => "Method: POST | Blandar kortleken och returnerar den samt spara i sessionen.",
-                "/api/deck/draw/:number" => "Method: POST | Drar antalet kort från kortleken och returnerar dom dragna korten samt antalet kort som finns kvar i kortleken.",
-                "/api/game" => "Method: GET | Visar upp aktuell ställning i blackjack.",
+                "api/qoute" => "Method: GET | Slumpar fram ett citat av tre möjliga och returnerar det tillsammans med dagens datum och timestamp.",
+                "api/deck" => "Method: GET | Returnerar sorterad kortlek.",
+                "api/deck/shuffle" => "Method: POST | Blandar kortleken och returnerar den samt spara i sessionen.",
+                "api/deck/draw/:number" => "Method: POST | Drar antalet kort från kortleken och returnerar dom dragna korten samt antalet kort som finns kvar i kortleken.",
+                "api/game" => "Method: GET | Visar upp aktuell ställning i blackjack.",
             ],
         ];
 
         return $this->render('api.html.twig', $data);
     }
 
-    #[Route("/api/qoute", name: "qoute", methods: ["GET"])]
+    #[Route("/api/qoute", name: "api/qoute", methods: ["GET"])]
     public function jsonQoute(): Response
     {
         $number = random_int(0, 2);
