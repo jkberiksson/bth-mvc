@@ -3,62 +3,62 @@ Search.appendIndex(
                 {
             "fqsen": "\\App\\Blackjack\\Blackjack",
             "name": "Blackjack",
-            "summary": "",
+            "summary": "Class\u0020Blackjack\u0020represents\u0020a\u0020simple\u0020implementation\u0020of\u0020the\u0020Blackjack\u0020game.",
             "url": "classes/App-Blackjack-Blackjack.html"
         },                {
             "fqsen": "\\App\\Blackjack\\Blackjack\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "",
+            "summary": "Constructs\u0020a\u0020new\u0020Blackjack\u0020instance.",
             "url": "classes/App-Blackjack-Blackjack.html#method___construct"
         },                {
             "fqsen": "\\App\\Blackjack\\Blackjack\u003A\u003AstartGame\u0028\u0029",
             "name": "startGame",
-            "summary": "",
+            "summary": "Starts\u0020the\u0020game\u0020by\u0020shuffling\u0020the\u0020deck\u0020and\u0020dealing\u0020initial\u0020cards.",
             "url": "classes/App-Blackjack-Blackjack.html#method_startGame"
         },                {
             "fqsen": "\\App\\Blackjack\\Blackjack\u003A\u003AgetPlayerHand\u0028\u0029",
             "name": "getPlayerHand",
-            "summary": "",
+            "summary": "Retrieves\u0020the\u0020player\u0027s\u0020hand.",
             "url": "classes/App-Blackjack-Blackjack.html#method_getPlayerHand"
         },                {
             "fqsen": "\\App\\Blackjack\\Blackjack\u003A\u003AgetDealerHand\u0028\u0029",
             "name": "getDealerHand",
-            "summary": "",
+            "summary": "Retrieves\u0020the\u0020dealer\u0027s\u0020hand.",
             "url": "classes/App-Blackjack-Blackjack.html#method_getDealerHand"
         },                {
             "fqsen": "\\App\\Blackjack\\Blackjack\u003A\u003AhitPlayer\u0028\u0029",
             "name": "hitPlayer",
-            "summary": "",
+            "summary": "Adds\u0020a\u0020card\u0020to\u0020the\u0020player\u0027s\u0020hand.",
             "url": "classes/App-Blackjack-Blackjack.html#method_hitPlayer"
         },                {
             "fqsen": "\\App\\Blackjack\\Blackjack\u003A\u003AhitDealer\u0028\u0029",
             "name": "hitDealer",
-            "summary": "",
+            "summary": "Adds\u0020a\u0020card\u0020to\u0020the\u0020dealer\u0027s\u0020hand.",
             "url": "classes/App-Blackjack-Blackjack.html#method_hitDealer"
         },                {
             "fqsen": "\\App\\Blackjack\\Blackjack\u003A\u003AdealCardToPlayer\u0028\u0029",
             "name": "dealCardToPlayer",
-            "summary": "",
+            "summary": "Deals\u0020a\u0020card\u0020to\u0020the\u0020player\u0027s\u0020hand.",
             "url": "classes/App-Blackjack-Blackjack.html#method_dealCardToPlayer"
         },                {
             "fqsen": "\\App\\Blackjack\\Blackjack\u003A\u003AdealCardToDealer\u0028\u0029",
             "name": "dealCardToDealer",
-            "summary": "",
+            "summary": "Deals\u0020a\u0020card\u0020to\u0020the\u0020dealer\u0027s\u0020hand.",
             "url": "classes/App-Blackjack-Blackjack.html#method_dealCardToDealer"
         },                {
             "fqsen": "\\App\\Blackjack\\Blackjack\u003A\u003AcalculateHandValue\u0028\u0029",
             "name": "calculateHandValue",
-            "summary": "",
+            "summary": "Calculates\u0020the\u0020total\u0020value\u0020of\u0020a\u0020hand.",
             "url": "classes/App-Blackjack-Blackjack.html#method_calculateHandValue"
         },                {
             "fqsen": "\\App\\Blackjack\\Blackjack\u003A\u003AgetCardValue\u0028\u0029",
             "name": "getCardValue",
-            "summary": "",
+            "summary": "Retrieves\u0020the\u0020value\u0020of\u0020a\u0020card.",
             "url": "classes/App-Blackjack-Blackjack.html#method_getCardValue"
         },                {
             "fqsen": "\\App\\Blackjack\\Blackjack\u003A\u003AcalculateWinner\u0028\u0029",
             "name": "calculateWinner",
-            "summary": "",
+            "summary": "Determines\u0020the\u0020winner\u0020of\u0020the\u0020game\u0020based\u0020on\u0020hand\u0020values.",
             "url": "classes/App-Blackjack-Blackjack.html#method_calculateWinner"
         },                {
             "fqsen": "\\App\\Blackjack\\Blackjack\u003A\u003A\u0024deck",
