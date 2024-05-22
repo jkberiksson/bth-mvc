@@ -1,0 +1,39 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Library{% endblock %}
+
+{% block body %}
+<div class="library">
+    <h1>Library</h1>
+    <form action="{{ path('book_create') }}" method="POST" class="book-form">
+    <h2>Add new book</h2>
+        <div>
+            <label for="title">Title</label>
+            <input required id="title" name="title "type="text" placeholder="Lord of the rings...">
+        </div>
+        <div>
+            <label for="author">Author</label>
+            <input required id="author" name="author "type="text" placeholder="J R R Tolkien">
+        </div>
+        <div>
+            <label for="isbn">ISBN</label>
+            <input required id="isbn" name="isbn "type="number" placeholder="9780261103252">
+        </div>
+        <div>
+            <label for="image">Image</label>
+            <input required id="image" name="image "type="text" placeholder="https://image.com">
+        </div>
+        <button type="submit">Add Book</button>
+    </form>
+
+    <ul class="book-list">
+        {% for book in books %}
+            <li class="book-card">
+                <h3>{{ book.title }}</h3>
+                <a href="book/{{ book.id }}">More info</a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+
+{% endblock %}

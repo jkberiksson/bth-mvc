@@ -322,3 +322,83 @@ footer {
 .flow-chart {
   width: 600px;
 }
+
+.book-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 30px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.book-form label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.book-form input[type='text'],
+.book-form input[type='number'] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.book-form button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #28a745;
+  color: white;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  align-self: flex-start;
+}
+
+.book-form button:hover {
+  background-color: #218838;
+}
+
+.book-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.book-card {
+  background-color: #f8f9fa;
+  padding: 2rem;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 280px;
+}
+
+.book-card h3 {
+  text-align: center;
+  font-weight: 500;
+  font-size: 18px;
+  margin-bottom: 2rem;
+}
+
+.book-card a {
+  padding: 10px 20px;
+  border: none;
+  background-color: #28a745;
+  color: white;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  align-self: flex-start;
+  width: 100%;
+  display: block;
+  text-align: center;
+}
+
+.book-card a:hover {
+  background-color: #218838;
+}

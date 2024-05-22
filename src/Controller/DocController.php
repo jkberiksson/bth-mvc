@@ -11,6 +11,6 @@ class DocController extends AbstractController
     #[Route('/game/doc', name: "game/doc")]
     public function gameDoc(): Response
     {
-        return $this->render('game-doc.html.twig');
+        return $this->render('game/game-doc.html.twig');
     }
 }

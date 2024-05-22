@@ -21,7 +21,7 @@ class GameController extends AbstractController
         $blackjack->startGame();
         $session->set('blackjack', $blackjack);
 
-        return $this->render('game.html.twig');
+        return $this->render('game/game.html.twig');
     }
 
     #[Route('/game/play', name: "game/play")]
@@ -48,7 +48,7 @@ class GameController extends AbstractController
             'dealerHandValue' => $dealerHandValue,
         ];
 
-        return $this->render('game-play.html.twig', $data);
+        return $this->render('game/game-play.html.twig', $data);
     }
 
     #[Route('/game/play/post', name: "game/play/post", methods: ["POST"])]

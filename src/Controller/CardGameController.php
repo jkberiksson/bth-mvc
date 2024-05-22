@@ -34,7 +34,7 @@ class CardGameController extends AbstractController
     #[Route('/card', name: "card")]
     public function card(): Response
     {
-        return $this->render('card.html.twig');
+        return $this->render('card/card.html.twig');
     }
 
     #[Route('/card/deck', name: "card/deck")]
@@ -51,7 +51,7 @@ class CardGameController extends AbstractController
             "deckOfCards" => $deckOfCards
         ];
 
-        return $this->render('card-deck.html.twig', $data);
+        return $this->render('card/card-deck.html.twig', $data);
     }
 
     #[Route('/card/deck/shuffle', name: "card/deck/shuffle")]
@@ -64,7 +64,7 @@ class CardGameController extends AbstractController
             "deckOfCards" => $deckOfCards
         ];
 
-        return $this->render('card-deck-shuffle.html.twig', $data);
+        return $this->render('card/card-deck-shuffle.html.twig', $data);
     }
 
     #[Route('/card/deck/draw', name: "card/deck/draw")]
@@ -85,7 +85,7 @@ class CardGameController extends AbstractController
             "cardsLeftInDeck" => $cardsLeftInDeck
         ];
 
-        return $this->render('card-deck-draw.html.twig', $data);
+        return $this->render('card/card-deck-draw.html.twig', $data);
     }
 
     #[Route('/card/deck/draw/number/{num<\d+>}', name: "card/deck/draw/number")]
@@ -112,7 +112,7 @@ class CardGameController extends AbstractController
             "cardsLeftInDeck" => $cardsLeftInDeck
         ];
 
-        return $this->render('card-deck-draw-number.html.twig', $data);
+        return $this->render('card/card-deck-draw-number.html.twig', $data);
     }
 
     #[Route('/card/deck/draw/number', name: "card/deck/draw/number/post", methods: ['POST'])]
