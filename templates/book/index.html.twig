@@ -9,19 +9,19 @@
     <h2>Add new book</h2>
         <div>
             <label for="title">Title</label>
-            <input required id="title" name="title "type="text" placeholder="Lord of the rings...">
+            <input required id="title" name="title" type="text" placeholder="Lord of the rings...">
         </div>
         <div>
             <label for="author">Author</label>
-            <input required id="author" name="author "type="text" placeholder="J R R Tolkien">
+            <input required id="author" name="author" type="text" placeholder="J R R Tolkien">
         </div>
         <div>
             <label for="isbn">ISBN</label>
-            <input required id="isbn" name="isbn "type="number" placeholder="9780261103252">
+            <input required id="isbn" name="isbn" type="number" placeholder="9780261103252">
         </div>
         <div>
             <label for="image">Image</label>
-            <input required id="image" name="image "type="text" placeholder="https://image.com">
+            <input required id="image" name="image" type="text" placeholder="https://image.com">
         </div>
         <button type="submit">Add Book</button>
     </form>
@@ -30,7 +30,11 @@
         {% for book in books %}
             <li class="book-card">
                 <h3>{{ book.title }}</h3>
-                <a href="book/{{ book.id }}">More info</a>
+                <a href="./library/{{ book.id }}">More info</a>
+                <a class="update" href="./library/update/{{ book.id }}">Update book</a>
+                <form action="{{ path('book_delete', { 'id': book.id }) }}" method="POST">
+                    <button type="submit">Delete book</button>
+                </form>
             </li>
         {% endfor %}
     </ul>

@@ -385,7 +385,8 @@ footer {
   margin-bottom: 2rem;
 }
 
-.book-card a {
+.book-card a,
+.book-card button {
   padding: 10px 20px;
   border: none;
   background-color: #28a745;
@@ -399,6 +400,30 @@ footer {
   text-align: center;
 }
 
-.book-card a:hover {
+.book-card a:hover,
+.book-card button:hover {
   background-color: #218838;
+}
+
+.book-card button {
+  background-color: rgb(196, 71, 71);
+}
+
+.book-card button:hover {
+  background-color: #882121;
+}
+
+.book-card .update {
+  background-color: rgb(71, 104, 196);
+  margin-top: 1rem;
+}
+
+.book-card .update:hover {
+  background-color: #213488;
+}
+
+.book-img {
+  height: 400px;
+  width: 300px;
+  object-fit: cover;
 }
