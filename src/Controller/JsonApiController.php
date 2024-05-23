@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use App\Repository\BookRepository;
 
 class JsonApiController extends AbstractController
 {
@@ -21,6 +22,9 @@ class JsonApiController extends AbstractController
                 "api/deck/shuffle" => "Method: POST | Blandar kortleken och returnerar den samt spara i sessionen.",
                 "api/deck/draw/:number" => "Method: POST | Drar antalet kort från kortleken och returnerar dom dragna korten samt antalet kort som finns kvar i kortleken.",
                 "api/game" => "Method: GET | Visar upp aktuell ställning i blackjack.",
+                "api/library/books" => "Method: GET | Visar upp samtliga böcker i biblioteket.",
+                "api/library/book/:isbn" => "Method: GET | Visa upp en bok i biblioteket via dess ISBN.",
+                "api/library/book/978045126584" => "",
             ],
         ];
 
@@ -152,6 +156,34 @@ class JsonApiController extends AbstractController
         }
 
         $response = new JsonResponse($data);
+        $response->setEncodingOptions(
+            $response->getEncodingOptions() | JSON_PRETTY_PRINT
+        );
+        return $response;
+    }
+
+    #[Route('/api/library/books', name: "library/books", methods: ["GET"])]
+    public function jsonBooks(BookRepository $BookRepository): Response
+    {
+        $books = $BookRepository->findAll();
+
+        $response = $this->json($books);
+        $response->setEncodingOptions(
+            $response->getEncodingOptions() | JSON_PRETTY_PRINT
+        );
+        return $response;
+    }
+
+    #[Route('/api/library/book/{isbn}', name: "api_library_book_by_isbn", methods: ["GET"])]
+    public function jsonBookByIsbn(BookRepository $bookRepository, string $isbn): Response
+    {
+        $book = $bookRepository->findOneBy(['isbn' => $isbn]);
+
+        if (!$book) {
+            throw $this->createNotFoundException('No book found for ISBN ' . $isbn);
+        }
+
+        $response = $this->json($book);
         $response->setEncodingOptions(
             $response->getEncodingOptions() | JSON_PRETTY_PRINT
         );
