@@ -163,9 +163,9 @@ class JsonApiController extends AbstractController
     }
 
     #[Route('/api/library/books', name: "library/books", methods: ["GET"])]
-    public function jsonBooks(BookRepository $BookRepository): Response
+    public function jsonBooks(BookRepository $bookRepository): Response
     {
-        $books = $BookRepository->findAll();
+        $books = $bookRepository->findAll();
 
         $response = $this->json($books);
         $response->setEncodingOptions(

@@ -14,9 +14,9 @@ use Symfony\Component\Routing\Attribute\Route;
 class BookController extends AbstractController
 {
     #[Route('/library', name: 'library')]
-    public function viewAllBooks(BookRepository $BookRepository): Response
+    public function viewAllBooks(BookRepository $bookRepository): Response
     {
-        $books = $BookRepository->findAll();
+        $books = $bookRepository->findAll();
 
         $data = ['books' => $books];
 
@@ -41,10 +41,10 @@ class BookController extends AbstractController
     }
 
     #[Route('/book/delete/{id}', name: 'book_delete', methods: ["POST"])]
-    public function deleteBook(ManagerRegistry $doctrine, int $id): Response
+    public function deleteBook(ManagerRegistry $doctrine, int $bookId): Response
     {
         $entityManager = $doctrine->getManager();
-        $book = $entityManager->getRepository(Book::class)->find($id);
+        $book = $entityManager->getRepository(Book::class)->find($bookId);
 
         $entityManager->remove($book);
         $entityManager->flush();
@@ -53,9 +53,9 @@ class BookController extends AbstractController
     }
 
     #[Route('/library/{id}', name: 'book_by_id')]
-    public function showBookById(bookRepository $bookRepository, int $id): Response
+    public function showBookById(bookRepository $bookRepository, int $bookId): Response
     {
-        $book = $bookRepository->find($id);
+        $book = $bookRepository->find($bookId);
 
         $data = ['book' => $book];
 
@@ -63,9 +63,9 @@ class BookController extends AbstractController
     }
 
     #[Route('/library/update/{id}', name: 'show_book_update', methods: ["GET"])]
-    public function showUpdateBook(bookRepository $bookRepository, int $id): Response
+    public function showUpdateBook(bookRepository $bookRepository, int $bookId): Response
     {
-        $book = $bookRepository->find($id);
+        $book = $bookRepository->find($bookId);
 
         $data = ['book' => $book];
 
@@ -73,10 +73,10 @@ class BookController extends AbstractController
     }
 
     #[Route('/book/update/{id}', name: 'book_update', methods: ["POST"])]
-    public function updateBook(ManagerRegistry $doctrine, Request $request, int $id): Response
+    public function updateBook(ManagerRegistry $doctrine, Request $request, int $bookId): Response
     {
         $entityManager = $doctrine->getManager();
-        $book = $entityManager->getRepository(Book::class)->find($id);
+        $book = $entityManager->getRepository(Book::class)->find($bookId);
 
         $book->setTitle($request->request->get('title'));
         $book->setAuthor($request->request->get('author'));
