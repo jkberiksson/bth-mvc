@@ -40,7 +40,7 @@ class BookController extends AbstractController
         return $this->redirectToRoute('library');
     }
 
-    #[Route('/book/delete/{id}', name: 'book_delete', methods: ["POST"])]
+    #[Route('/book/delete/{bookId}', name: 'book_delete', methods: ["POST"])]
     public function deleteBook(ManagerRegistry $doctrine, int $bookId): Response
     {
         $entityManager = $doctrine->getManager();
@@ -52,7 +52,7 @@ class BookController extends AbstractController
         return $this->redirectToRoute('library');
     }
 
-    #[Route('/library/{id}', name: 'book_by_id')]
+    #[Route('/library/{bookId}', name: 'book_by_id')]
     public function showBookById(bookRepository $bookRepository, int $bookId): Response
     {
         $book = $bookRepository->find($bookId);
@@ -62,7 +62,7 @@ class BookController extends AbstractController
         return $this->render('book/book.html.twig', $data);
     }
 
-    #[Route('/library/update/{id}', name: 'show_book_update', methods: ["GET"])]
+    #[Route('/library/update/{bookId}', name: 'show_book_update', methods: ["GET"])]
     public function showUpdateBook(bookRepository $bookRepository, int $bookId): Response
     {
         $book = $bookRepository->find($bookId);
@@ -72,7 +72,7 @@ class BookController extends AbstractController
         return $this->render('book/update.html.twig', $data);
     }
 
-    #[Route('/book/update/{id}', name: 'book_update', methods: ["POST"])]
+    #[Route('/book/update/{bookId}', name: 'book_update', methods: ["POST"])]
     public function updateBook(ManagerRegistry $doctrine, Request $request, int $bookId): Response
     {
         $entityManager = $doctrine->getManager();

@@ -6,7 +6,7 @@
 <div class="book">
     <h1>Update book</h1>
     <h3>{{ book.id }}</h3>
-    <form action="{{ path('book_update', { 'id': book.id }) }}" method="POST" class="book-form">
+    <form action="{{ path('book_update', { 'bookId': book.id }) }}" method="POST" class="book-form">
         <div>
             <label for="title">Title</label>
             <input required id="title" name="title" type="text" value="{{ book.title }}">
