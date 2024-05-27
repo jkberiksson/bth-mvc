@@ -1,0 +1,48 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Metrics{% endblock %}
+
+{% block body %}
+<div class="metrics">
+    <h1>Metrics</h1>
+    <h3>Introduktion</h3>
+    <br>
+    <h4>Codestyle</h4>
+    <p>Codestyle handlar om att följa enhetliga kodningsstandarder och konventioner inom ett projekt. Att ha en konsekvent kodstil gör det lättare för utvecklare att läsa och förstå varandras kod. Kodstil kan mätas med verktyg som linters</p>
+    <p>I denna kursen använder vi oss av csfix vilket hjälper till att upprätthålla en bra och enhetlig kodstil. Har man en dålig kodstil kan det betyda att koden blir svårare att underhålla. Är man många som kodar på ett och samma projekt kan det väldigt fort bli otydligt om man inte följer en och samma kodstil.</p>
+    <br>
+    <h4>Coverage</h4>
+    <p>Coverage avser hur stor del av koden som täcks av automatiska tester. Hög testtäckning innebär att större delen av koden testas, vilket minskar risken för buggar.</p>
+    <p>Exempelvis så har jag bara 20% coverage enligt scrutinizer. Låg täckning kan öka risken för oupptäckta buggar och andra svårigheter vid refaktorering vilket kan vara ett tecken på sämre skriven kod.</p>
+    <br>
+    <h4>Complexity</h4>
+    <p>Complexity handlar om hur komplicerad koden är att förstå och underhålla. Cyklomatisk komplexitet är ett vanligt mätvärde för att kvantifiera detta. Lägre komplexitet gör koden enklare att underhålla och minskar risken för buggar.</p>
+    <p>Enligt scrutinizer så ligger alla mina moduler inom 0-10 förutom en som ligger på 14. Det är också den modul som är min största. Det kan då betyda att den är svårast att underhålla.</p>
+    <br>
+    <h4>Cohesion</h4>
+    <p>Cohesion refererar till hur väl samlade och fokuserade en moduls ansvarsområden är. Hög sammanhållning innebär att en modul har ett tydligt och enhetligt syfte.</p>
+    <br>
+    <h4>Coupling</h4>
+    <p>Coupling beskriver hur beroende olika moduler är av varandra. Låg koppling (decoupling) är önskvärt eftersom det gör systemet mer modulärt och lättare att förändra.</p>
+    <br>
+    <h4>CRAP</h4>
+    <p>CRAP-poängen kombinerar komplexitet och testtäckning för att identifiera kod som är både komplex och dåligt testad. En hög CRAP-poäng indikerar hög riskkod.</p>
+    <br><br>
+    <h3>PhpMetrics</h3>
+    <p>Även om jag tycker att jag lyckats helt okej med min kod så är den långt ifrån perfekt och det visar sig också i rapporten. flaskhals 1, direkt när kommer till overview så ser men en del stora röda ringar, inget gott tecken. Min JsonApiController har en cyklomatiska komplexitet på 7, vilket i sig kanske inte är jättehögt, men det finns fortfarande utrymme för förbättring. Komplexitet kan göra koden svår att förstå och underhålla. Det som gör att det blir en stor röd ring är dess maintainability index som ligger på 54.</p>
+    <p>Flaskhals 2, jag har violationserror kopplat till samma controller. Den säger att jag potentiella buggar i min kod. Rapporten säger att jag borde fundera på att dela upp min kod mer.</p>
+    <p>Flaskhals 3, minn Blackjack class har enligt PhpMetrics en cyklomatiska komplexitet på 11, det är väl i och för sig hanterbart, men klart finns det förbättringspotential. </p>
+    <img class="komplexitet-img" src="{{ asset('img/komplexitet.png') }}" alt="error">
+    <img class="komplexitet-img" src="{{ asset('img/error.png') }}" alt="error">
+    <br><br>
+    <h3>Scrutinizer</h3>
+    <p>När jag kikar på rapporten från scrutinizer så är det ganska tydligt var det största problemet ligger i min kod. Jag har en coverage som bara sträcker sig till 20% vilket kanske inte är optimalt. Jag har också en del moduler som kan upplevas som lite för stora och komplexa(kanske inte om man jämför med andra projekt ute i världen men om man bara ser till detta projektet). Jag har också en del höga crap-värden på vissa metoder.</p>
+    <img class="komplexitet-img" src="{{ asset('img/error1.png') }}" alt="error">
+    <img class="komplexitet-img" src="{{ asset('img/error2.png') }}" alt="error">
+    <br><br>
+    <h3>Förbättringar</h3>
+    Jag kommer fokusera på att fixa mina issues, öka min kodtäckning och minska mina violations. Dom två första förbättringarna var ganska självklara. Dom kommer från scrutinizer och då jag redan har lyckats få en 10:a i poäng så vill jag se till se att övriga problem i den rapporten "försvinner". För att öka min kodtäckning behöver jag skriva fler tester. Sen hade jag tre issues som jag inte riktigt vet hur jag ska hantera än. Jag får testa mig fram och läsa på vad som är problemet här. Förhoppningen är ju såklart att mina positiva värden, dvs min kodkvalite, ska öka och dom negativa ska minska för att få så tillfredställande rapporter som möjligt. Det är ju dessutom någon form av kvitto på att man skriver hyfsad kod. 
+    <h3>Diskussion</h3>
+</div>
+
+{% endblock %}
