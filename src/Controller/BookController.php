@@ -26,13 +26,18 @@ class BookController extends AbstractController
     #[Route('/book/create', name: 'book_create', methods: ["POST"])]
     public function createBook(Request $request, ManagerRegistry $doctrine): Response
     {
+        $title = (string) $request->request->get('title');
+        $author = (string) $request->request->get('author');
+        $isbn = (string) $request->request->get('isbn');
+        $image = $request->request->get('image');
+
         $entityManager = $doctrine->getManager();
 
         $book = new Book();
-        $book->setTitle($request->request->get('title'));
-        $book->setAuthor($request->request->get('author'));
-        $book->setIsbn($request->request->get('isbn'));
-        $book->setImage($request->request->get('image'));
+        $book->setTitle($title);
+        $book->setAuthor($author);
+        $book->setIsbn($isbn);
+        $book->setImage($image !== null ? (string) $image : null);
 
         $entityManager->persist($book);
         $entityManager->flush();
@@ -46,8 +51,10 @@ class BookController extends AbstractController
         $entityManager = $doctrine->getManager();
         $book = $entityManager->getRepository(Book::class)->find($bookId);
 
-        $entityManager->remove($book);
-        $entityManager->flush();
+        if ($book !== null) {
+            $entityManager->remove($book);
+            $entityManager->flush();
+        }
 
         return $this->redirectToRoute('library');
     }
@@ -78,12 +85,19 @@ class BookController extends AbstractController
         $entityManager = $doctrine->getManager();
         $book = $entityManager->getRepository(Book::class)->find($bookId);
 
-        $book->setTitle($request->request->get('title'));
-        $book->setAuthor($request->request->get('author'));
-        $book->setIsbn($request->request->get('isbn'));
-        $book->setImage($request->request->get('image'));
+        if ($book !== null) {
+            $title = (string) $request->request->get('title');
+            $author = (string) $request->request->get('author');
+            $isbn = (string) $request->request->get('isbn');
+            $image = $request->request->get('image');
 
-        $entityManager->flush();
+            $book->setTitle($title);
+            $book->setAuthor($author);
+            $book->setIsbn($isbn);
+            $book->setImage($image !== null ? (string) $image : null);
+
+            $entityManager->flush();
+        }
 
         return $this->redirectToRoute('library');
     }

@@ -29,6 +29,10 @@ class GameController extends AbstractController
     {
         $blackjack = $session->get('blackjack');
 
+        if (!$blackjack instanceof Blackjack) {
+            throw $this->createNotFoundException('Blackjack game not found');
+        }
+
         $playerHand = $blackjack->getPlayerHand();
         $dealerHand = $blackjack->getDealerHand();
 
@@ -55,6 +59,10 @@ class GameController extends AbstractController
     public function gamePlayPost(Request $request, SessionInterface $session): Response
     {
         $blackjack = $session->get('blackjack');
+
+        if (!$blackjack instanceof Blackjack) {
+            throw $this->createNotFoundException('Blackjack game not found');
+        }
 
         $action = $request->request->get('action');
 

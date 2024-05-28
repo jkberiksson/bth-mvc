@@ -72,7 +72,7 @@ class CardGameController extends AbstractController
     {
         $deckOfCards = $session->get("deckOfCards");
 
-        if (!$deckOfCards) {
+        if (!$deckOfCards instanceof DeckOfCardsWithJoker) {
             $deckOfCards = new DeckOfCardsWithJoker();
             $session->set("deckOfCards", $deckOfCards);
         }
@@ -93,7 +93,7 @@ class CardGameController extends AbstractController
     {
         $deckOfCards = $session->get("deckOfCards");
 
-        if (!$deckOfCards) {
+        if (!$deckOfCards instanceof DeckOfCardsWithJoker) {
             $deckOfCards = new DeckOfCardsWithJoker();
             $session->set("deckOfCards", $deckOfCards);
         }

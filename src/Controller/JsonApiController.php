@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Card\DeckOfCardsWithJoker;
+use App\Blackjack\Blackjack;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -113,9 +114,10 @@ class JsonApiController extends AbstractController
     #[Route('/api/deck/draw/{num<\d+>}', name: "api/deck/draw/number", methods: ["POST"])]
     public function jsonDeckDrawNumber(SessionInterface $session, int $num): Response
     {
+        /** @var DeckOfCardsWithJoker|null $deckOfCards */
         $deckOfCards = $session->get("deckOfCards");
 
-        if (!$deckOfCards) {
+        if (!$deckOfCards instanceof DeckOfCardsWithJoker) {
             $deckOfCards = new DeckOfCardsWithJoker();
             $session->set("deckOfCards", $deckOfCards);
         }
@@ -124,7 +126,9 @@ class JsonApiController extends AbstractController
 
         for ($i = 1; $i <= $num; $i++) {
             $drawnCard = $deckOfCards->drawCard();
-            $drawnCards[] = $drawnCard->getAsString();
+            if ($drawnCard) {
+                $drawnCards[] = $drawnCard->getAsString();
+            }
         }
 
         $cardsLeftInDeck = $deckOfCards->cardsLeftInDeck();
@@ -144,11 +148,12 @@ class JsonApiController extends AbstractController
     #[Route('/api/game', name: "api/game", methods: ["GET"])]
     public function jsonGame(SessionInterface $session): Response
     {
+        /** @var Blackjack|null $blackjack */
         $blackjack = $session->get("blackjack");
 
         $data = [];
 
-        if ($blackjack) {
+        if ($blackjack instanceof Blackjack) {
             $data = [
                 'Player hand' => $blackjack->calculateHandValue($blackjack->getPlayerHand()),
                 'Dealer hand' => $blackjack->calculateHandValue($blackjack->getDealerHand()),

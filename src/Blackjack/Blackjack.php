@@ -3,6 +3,7 @@
 namespace App\Blackjack;
 
 use App\Card\DeckOfCards;
+use App\Card\Card;
 
 /**
  * Class Blackjack represents a simple implementation of the Blackjack game.
@@ -12,10 +13,12 @@ class Blackjack
     /** @var DeckOfCards The deck of cards used in the game. */
     private $deck;
 
-    /** @var array The player's hand. */
+    /** @var Card[] The player's hand. */
+    /** @phpstan-ignore-next-line */
     private $playerHand;
 
-    /** @var array The dealer's hand. */
+    /** @var Card[] The dealer's hand. */
+    /** @phpstan-ignore-next-line */
     private $dealerHand;
 
     /**
@@ -42,7 +45,7 @@ class Blackjack
     /**
      * Retrieves the player's hand.
      *
-     * @return array The player's hand.
+     * @return Card[] The player's hand.
      */
     public function getPlayerHand(): array
     {
@@ -52,7 +55,7 @@ class Blackjack
     /**
      * Retrieves the dealer's hand.
      *
-     * @return array The dealer's hand.
+     * @return Card[] The dealer's hand.
      */
     public function getDealerHand(): array
     {
@@ -94,7 +97,7 @@ class Blackjack
     /**
      * Calculates the total value of a hand.
      *
-     * @param array $hand The hand to calculate the value for.
+     * @param Card[] $hand The hand to calculate the value for.
      *
      * @return int The total value of the hand.
      */
