@@ -171,6 +171,16 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-Controller-AboutController.html#method_about"
         },                {
+            "fqsen": "\\App\\Controller\\BlackjackController",
+            "name": "BlackjackController",
+            "summary": "",
+            "url": "classes/App-Controller-BlackjackController.html"
+        },                {
+            "fqsen": "\\App\\Controller\\BlackjackController\u003A\u003AjsonGame\u0028\u0029",
+            "name": "jsonGame",
+            "summary": "",
+            "url": "classes/App-Controller-BlackjackController.html#method_jsonGame"
+        },                {
             "fqsen": "\\App\\Controller\\BookController",
             "name": "BookController",
             "summary": "",
@@ -251,6 +261,26 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-Controller-CardGameController.html#method_cardDeckDrawNumberPost"
         },                {
+            "fqsen": "\\App\\Controller\\DeckController",
+            "name": "DeckController",
+            "summary": "",
+            "url": "classes/App-Controller-DeckController.html"
+        },                {
+            "fqsen": "\\App\\Controller\\DeckController\u003A\u003AjsonDeck\u0028\u0029",
+            "name": "jsonDeck",
+            "summary": "",
+            "url": "classes/App-Controller-DeckController.html#method_jsonDeck"
+        },                {
+            "fqsen": "\\App\\Controller\\DeckController\u003A\u003AjsonDeckShuffle\u0028\u0029",
+            "name": "jsonDeckShuffle",
+            "summary": "",
+            "url": "classes/App-Controller-DeckController.html#method_jsonDeckShuffle"
+        },                {
+            "fqsen": "\\App\\Controller\\DeckController\u003A\u003AjsonDeckDrawNumber\u0028\u0029",
+            "name": "jsonDeckDrawNumber",
+            "summary": "",
+            "url": "classes/App-Controller-DeckController.html#method_jsonDeckDrawNumber"
+        },                {
             "fqsen": "\\App\\Controller\\DocController",
             "name": "DocController",
             "summary": "",
@@ -306,35 +336,20 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-Controller-JsonApiController.html#method_jsonQoute"
         },                {
-            "fqsen": "\\App\\Controller\\JsonApiController\u003A\u003AjsonDeck\u0028\u0029",
-            "name": "jsonDeck",
+            "fqsen": "\\App\\Controller\\LibraryController",
+            "name": "LibraryController",
             "summary": "",
-            "url": "classes/App-Controller-JsonApiController.html#method_jsonDeck"
+            "url": "classes/App-Controller-LibraryController.html"
         },                {
-            "fqsen": "\\App\\Controller\\JsonApiController\u003A\u003AjsonDeckShuffle\u0028\u0029",
-            "name": "jsonDeckShuffle",
-            "summary": "",
-            "url": "classes/App-Controller-JsonApiController.html#method_jsonDeckShuffle"
-        },                {
-            "fqsen": "\\App\\Controller\\JsonApiController\u003A\u003AjsonDeckDrawNumber\u0028\u0029",
-            "name": "jsonDeckDrawNumber",
-            "summary": "",
-            "url": "classes/App-Controller-JsonApiController.html#method_jsonDeckDrawNumber"
-        },                {
-            "fqsen": "\\App\\Controller\\JsonApiController\u003A\u003AjsonGame\u0028\u0029",
-            "name": "jsonGame",
-            "summary": "",
-            "url": "classes/App-Controller-JsonApiController.html#method_jsonGame"
-        },                {
-            "fqsen": "\\App\\Controller\\JsonApiController\u003A\u003AjsonBooks\u0028\u0029",
+            "fqsen": "\\App\\Controller\\LibraryController\u003A\u003AjsonBooks\u0028\u0029",
             "name": "jsonBooks",
             "summary": "",
-            "url": "classes/App-Controller-JsonApiController.html#method_jsonBooks"
+            "url": "classes/App-Controller-LibraryController.html#method_jsonBooks"
         },                {
-            "fqsen": "\\App\\Controller\\JsonApiController\u003A\u003AjsonBookByIsbn\u0028\u0029",
+            "fqsen": "\\App\\Controller\\LibraryController\u003A\u003AjsonBookByIsbn\u0028\u0029",
             "name": "jsonBookByIsbn",
             "summary": "",
-            "url": "classes/App-Controller-JsonApiController.html#method_jsonBookByIsbn"
+            "url": "classes/App-Controller-LibraryController.html#method_jsonBookByIsbn"
         },                {
             "fqsen": "\\App\\Controller\\LuckyController",
             "name": "LuckyController",
