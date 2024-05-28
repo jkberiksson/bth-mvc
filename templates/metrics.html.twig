@@ -16,7 +16,7 @@
     <p>Exempelvis så har jag bara 20% coverage enligt scrutinizer. Låg täckning kan öka risken för oupptäckta buggar och andra svårigheter vid refaktorering vilket kan vara ett tecken på sämre skriven kod.</p>
     <br>
     <h4>Complexity</h4>
-    <p>Complexity handlar om hur komplicerad koden är att förstå och underhålla. Cyklomatisk komplexitet är ett vanligt mätvärde för att kvantifiera detta. Lägre komplexitet gör koden enklare att underhålla och minskar risken för buggar.</p>
+    <p>Complexity handlar om hur komplicerad koden är att förstå och underhålla. Cyklomatisk komplexitet är ett vanligt mätvärde för att fastställa detta. Lägre komplexitet gör koden enklare att underhålla och minskar risken för buggar.</p>
     <p>Enligt scrutinizer så ligger alla mina moduler inom 0-10 förutom en som ligger på 14. Det är också den modul som är min största. Det kan då betyda att den är svårast att underhålla.</p>
     <br>
     <h4>Cohesion</h4>
@@ -41,8 +41,19 @@
     <img class="komplexitet-img" src="{{ asset('img/error2.png') }}" alt="error">
     <br><br>
     <h3>Förbättringar</h3>
-    Jag kommer fokusera på att fixa mina issues, fixa min codestyle och minska mina violations. Jag vill försöka få en så städad rapport som möjligt i scrutinizer så då börjar jag med att fixa mina issues i största möjliga mån. Jag vet inte exakt hur jag ska göra men jag får felsöka lite och se vad jag kan komma fram till. Jag har också en hel del lint-errors så det kommer jag fixa till också. Sen vill jag också minska mina violations i min phpmetrics rapport. 
+    <p>Jag kommer fokusera på att fixa mina issues, fixa min codestyle och minska mina violations. Jag vill försöka få en så städad rapport som möjligt i scrutinizer så då börjar jag med att fixa mina issues i största möjliga mån. Jag vet inte exakt hur jag ska göra men jag får felsöka lite och se vad jag kan komma fram till. Jag har också en hel del lint-errors så det kommer jag fixa till också. Sen vill jag också minska mina violations i min phpmetrics rapport. Förhoppning är att det ska generera bättre rapporter överlag. Bra rapporter är ett tecken på att man skriver någorlunda korrekt kod.</p>
+    <br>
+    <br>
+    <img class="komplexitet-img" src="{{ asset('img/error3.png') }}" alt="error">
+    <img class="komplexitet-img" src="{{ asset('img/success.png') }}" alt="success">
+    <img class="komplexitet-img" src="{{ asset('img/success1.png') }}" alt="success">
+    <img class="komplexitet-img" src="{{ asset('img/success2.png') }}" alt="success">
+    <p>Efter att ha suttit flertalet timmar med att försöka få bukt på en del av problemen har jag nu fått nya värden i rapporterna. Alla mina lint-errors är nu borta. Jag har också fixat til mina issues så dom är borta, förutom det felet som hör till kernel.php som jag inte lyckats fixa. Jag har också fått borta några av mina errors i metrics-rapporten.</p>
+    <br>
+    <br>
     <h3>Diskussion</h3>
+    <p>Att jobba med verktyg och rapporter ser jag som positivt. Jag tror att det kan hjälpa en i sitt kodande, speciellt om man jobbar med andra. Då kan det absolut vara en fördel, för alla skriva olika. Har man då verktyg till sin hjälp är det ett stort plus. Men jag tror inte att det bara är guld och gröna skogar. Först och främst handlar det ju om tid och till viss del pengar. Det går ju spendera ex antal timmar bara på att kolla på rapporter och disktuera dess värden. Dom kan säkert visa en hel del "fel" vilket tar tid att fixa till. Det kanske inte ens är säkert att det blir någon skillnad på slutprodukten. Är det då bra? Tveksamt enligt mig. Men överlag är jag positivt inställd till verktyg och hjälpmedel så länge det är på en rimlig nivå.</p>
+    <p>Nu har jag, pga annat i livet, inte kunnat lägga ner den tid jag vill på att sätta mig in i alla värden. Det har gjort och det har blivit lite rörigt i min skalle men jag hoppas att det blivit någorlunda okej.</p>
 </div>
 
 {% endblock %}
