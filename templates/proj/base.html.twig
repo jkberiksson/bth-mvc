@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('proj') }}
+    {% endblock %}
+
+    {% block javascripts %}
+    {{ encore_entry_script_tags('app') }}
+    {% block importmap %}{{ importmap('app') }}{% endblock %}
+    {% endblock %}
+</head>
+
+<body>
+
+    <nav>
+        <ul>
+            <li{% if app.request.attributes.get('_route')=='proj' %} class="active" {% endif %}>
+                <a href="{{ path('proj') }}">Home</a>
+            </li>
+            <li{% if app.request.attributes.get('_route')=='proj/about' %} class="active" {% endif %}>
+                <a href="{{ path('proj/about') }}">About</a>
+            </li>
+        </ul>
+    </nav>
+
+    <main class="project">
+        <a href="{{ path('home') }}">Back to report</a>
+        {% block body %}{% endblock %}
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 Blackjack Game. All rights reserved.</p>
+            <p>Created by Your Jakob Eriksson</p>
+            <p>
+                <a>Terms of Service</a> | 
+                <a>Privacy Policy</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,206 @@
+/* proj.css */
+
+/* General Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+  color: #333;
+}
+
+a {
+  color: #3498db;
+  text-decoration: none;
+}
+
+/* Navbar Styles */
+nav {
+  background-color: #333;
+  color: #fff;
+  padding: 1rem 0;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+}
+
+nav ul li {
+  margin: 0 1rem;
+}
+
+nav ul li a {
+  color: #fff;
+  font-weight: bold;
+}
+
+nav ul li.active a {
+  border-bottom: 2px solid #3498db;
+}
+
+/* Main Content Styles */
+main.project {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 2rem auto;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  width: calc(100% - 4rem);
+}
+
+main.project h1,
+main.project h2 {
+  color: #3498db;
+  margin-bottom: 1rem;
+}
+
+main.project p,
+main.project ul {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+main.project ul {
+  list-style-type: disc;
+  padding-left: 2rem;
+}
+
+main.project form {
+  margin-top: 2rem;
+}
+
+main.project label {
+  margin-right: 0.5rem;
+  font-weight: bold;
+}
+
+main.project select {
+  margin-right: 1rem;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+main.project button {
+  padding: 0.5rem 1rem;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+main.project button:hover {
+  background-color: #2980b9;
+}
+
+main.project a {
+  display: inline-block;
+  margin: 1rem 0;
+  padding: 0.5rem 1rem;
+  background-color: #3498db;
+  color: #fff;
+  border-radius: 4px;
+  text-align: center;
+}
+
+main.project a:hover {
+  background-color: #2980b9;
+}
+
+/* Footer Styles */
+footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 1rem 0;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+}
+
+footer .footer-content {
+  max-width: 800px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+footer a {
+  color: #3498db;
+  margin: 0 0.5rem;
+}
+
+/* Game Styles */
+.game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5rem;
+}
+
+.hand {
+  display: flex;
+  gap: 1rem;
+}
+
+.card {
+  width: 70px;
+  height: 100px;
+  border: 1px solid #000;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.current-hand-value {
+  margin-top: 1rem;
+}
+
+.card.suit-hearts,
+.card.suit-diamonds {
+  color: red;
+}
+
+.card.suit-clubs,
+.card.suit-spades {
+  color: black;
+}
+
+.players-container {
+  display: flex;
+  gap: 5rem;
+}
+
+.players,
+.dealer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.player {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+main.project a.green {
+  background-color: #2ab55f;
+}

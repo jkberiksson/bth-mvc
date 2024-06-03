@@ -1,0 +1,50 @@
+{% extends "proj/base.html.twig" %}
+
+{% block title %}Game{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('proj.css') }}">
+{% endblock %}
+
+{% block body %}
+    <h1>Blackjack Game</h1>
+    <div class="game">
+        <div class="dealer">
+            <h2>Dealer's Hand</h2>
+            <div class="hand">
+                {% for card in dealerHand %}
+                    <div class="card suit-{{ card.getSuit|lower }}">
+                        {{ card.getRank }}
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="current-hand-value">Current Hand: {{ dealerHandValue }}</div>
+        </div>
+
+        <div class="players">
+            <h2>Players' Hands</h2>
+            <div class="players-container">
+                {% for playerIndex, hand in playerHands %}
+                    <div class="player">
+                        <h3>Player {{ playerIndex + 1 }}:</h3>
+                        <div class="hand">
+                            {% for card in hand %}
+                                <div class="card suit-{{ card.getSuit|lower }}">
+                                    {{ card.getRank }}
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <div>Current Hand: {{ playerHandsValue[playerIndex] }}</div>
+                        <div>
+                            <a href="#" class="button">Hit</a>
+                            <a href="#" class="button">Stand</a>
+                            <a href="#" class="button">Double</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <a class="green" href="{{ path('proj/game', {'numPlayers': numPlayers}) }}">Restart Game</a>
+{% endblock %}
