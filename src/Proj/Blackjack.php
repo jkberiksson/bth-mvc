@@ -21,6 +21,9 @@ class Blackjack
     /** @var int The number of players in the game. */
     private $numPlayers;
 
+    /** @var array A boolean array to track if players have stood. */
+    private $playersStood;
+
     /**
      * Constructs a new Blackjack instance.
      *
@@ -32,6 +35,7 @@ class Blackjack
         $this->playerHands = [];
         $this->dealerHand = [];
         $this->numPlayers = $numPlayers;
+        $this->playersStood = array_fill(0, $numPlayers, false);
 
         // Initialize hands for all players
         for ($i = 0; $i < $numPlayers; $i++) {
@@ -48,11 +52,15 @@ class Blackjack
 
         // Deal initial cards to players and dealer
         for ($i = 0; $i < 2; $i++) {
-            foreach ($this->playerHands as &$hand) {
+            foreach ($this->playerHands as $playerIndex => &$hand) {
                 $hand[] = $this->deck->drawCard();
+                $handValue = $this->calculateHandValue($hand);
+                if ($handValue == 21) {
+                    $this->standPlayer($playerIndex);
+                }
             }
-            $this->dealerHand[] = $this->deck->drawCard();
         }
+        $this->dealerHand[] = $this->deck->drawCard();
     }
 
     /**
@@ -83,6 +91,11 @@ class Blackjack
     public function hitPlayer(int $playerIndex): void
     {
         $this->playerHands[$playerIndex][] = $this->deck->drawCard();
+
+        $handValue = $this->calculateHandValue($this->playerHands[$playerIndex]);
+        if ($handValue > 21 || $handValue == 21) {
+            $this->standPlayer($playerIndex);
+        }
     }
 
     /**
@@ -91,6 +104,27 @@ class Blackjack
     public function hitDealer(): void
     {
         $this->dealerHand[] = $this->deck->drawCard();
+    }
+
+    /**
+     * Sets the player's stand status to true.
+     *
+     * @param int $playerIndex The index of the player.
+     */
+    public function standPlayer(int $playerIndex): void
+    {
+        $this->playersStood[$playerIndex] = true;
+    }
+
+    /**
+     * Handles the double action for a player.
+     *
+     * @param int $playerIndex The index of the player.
+     */
+    public function doublePlayer(int $playerIndex): void
+    {
+        $this->hitPlayer($playerIndex);
+        $this->standPlayer($playerIndex);
     }
 
     /**
@@ -127,5 +161,66 @@ class Blackjack
         }
 
         return $value;
+    }
+
+    /**
+     * Check if all players have stood.
+     *
+     * @return bool True if all players have stood, otherwise false.
+     */
+    public function allPlayersStood(): bool
+    {
+        return !in_array(false, $this->playersStood);
+    }
+
+
+    /**
+     * Retrieves an array indicating whether each player has stood.
+     *
+     * @return array An array representing the standing status of each player.
+     * Each element is a boolean value indicating whether the corresponding player has stood.
+     */
+    public function getPlayersStood(): array
+    {
+        return $this->playersStood;
+    }
+
+
+    /**
+     * Dealer plays according to Blackjack rules.
+     */
+    public function dealerPlay(): void
+    {
+        while ($this->calculateHandValue($this->dealerHand) < 17) {
+            $this->hitDealer();
+        }
+    }
+
+    /**
+     * Determines the result of the game.
+     *
+     * @return array The result of the game for each player.
+     */
+    public function determineWinners(): array
+    {
+        $results = [];
+        $dealerHandValue = $this->calculateHandValue($this->dealerHand);
+
+        foreach ($this->playerHands as $index => $playerHand) {
+            $playerHandValue = $this->calculateHandValue($playerHand);
+            if ($playerHandValue > 21) {
+                $results[$index] = 'Lose (Bust)';
+            } elseif ($dealerHandValue > 21) {
+                $results[$index] = 'Win (Dealer Bust)';
+            } elseif ($playerHandValue > $dealerHandValue) {
+                $results[$index] = 'Win';
+            } elseif ($playerHandValue < $dealerHandValue) {
+                $results[$index] = 'Lose';
+            } else {
+                $results[$index] = 'Tie';
+            }
+        }
+
+        return $results;
     }
 }

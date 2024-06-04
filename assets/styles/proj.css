@@ -170,13 +170,13 @@ footer a {
   margin-top: 1rem;
 }
 
-.card.suit-hearts,
-.card.suit-diamonds {
+.hand .card[suit='&#9829;'],
+.hand .card[suit='&#9830;'] {
   color: red;
 }
 
-.card.suit-clubs,
-.card.suit-spades {
+.hand .card[suit='&#9827;'],
+.hand .card[suit='&#9824;'] {
   color: black;
 }
 

@@ -15,11 +15,17 @@
             <div class="hand">
                 {% for card in dealerHand %}
                     <div class="card suit-{{ card.getSuit|lower }}">
-                        {{ card.getRank }}
+                        {{ card.getRank }} {{ card.getSuit|raw }}
                     </div>
                 {% endfor %}
             </div>
-            <div class="current-hand-value">Current Hand: {{ dealerHandValue }}</div>
+
+            {% if dealerHandValue > 21 %}
+                <div class="current-hand-value">BUST</div>
+            {% endif %}
+            {% if dealerHandValue <= 21 %}
+                <div class="current-hand-value">Current Hand: {{ dealerHandValue }}</div>
+            {% endif %}
         </div>
 
         <div class="players">
@@ -30,21 +36,31 @@
                         <h3>Player {{ playerIndex + 1 }}:</h3>
                         <div class="hand">
                             {% for card in hand %}
-                                <div class="card suit-{{ card.getSuit|lower }}">
-                                    {{ card.getRank }}
+                                <div suit="{{ card.getSuit }}" class="card suit-{{ card.getSuit|lower }}">
+                                    {{ card.getRank }} {{ card.getSuit|raw }}
                                 </div>
                             {% endfor %}
                         </div>
-                        <div>Current Hand: {{ playerHandsValue[playerIndex] }}</div>
-                        <div>
-                            <a href="#" class="button">Hit</a>
-                            <a href="#" class="button">Stand</a>
-                            <a href="#" class="button">Double</a>
-                        </div>
+                        {% if playerHandsValue[playerIndex] > 21 %}
+                            <div>BUST</div>
+                        {% endif %}
+                        {% if playerHandsValue[playerIndex] <= 21 %}
+                            <div>Current Hand: {{ playerHandsValue[playerIndex] }}</div>
+                        {% endif %}
+                        {% if playerHandsValue[playerIndex] < 21 and results is empty and not playersStood[playerIndex] %}
+                            <div>
+                                <a href="{{ path('proj/hit', {'player': playerIndex}) }}" class="button">Hit</a>
+                                <a href="{{ path('proj/stand', {'player': playerIndex}) }}" class="button">Stand</a>
+                                <a href="{{ path('proj/double', {'player': playerIndex}) }}" class="button">Double</a>
+                            </div>
+                        {% endif %}
+                        {% if results is not empty %}
+                            <div>Result: {{ results[playerIndex] }}</div>
+                        {% endif %}
                     </div>
                 {% endfor %}
             </div>
         </div>
     </div>
-    <a class="green" href="{{ path('proj/game', {'numPlayers': numPlayers}) }}">Restart Game</a>
+    <a class="green" href="{{ path('proj/session/delete', {'numPlayers': numPlayers}) }}">Restart Game</a>
 {% endblock %}
