@@ -8,13 +8,13 @@
 
 ## Beskrivning
 
-En webbplats byggd med PHP-ramverkert Symfony. Innehåller me-sidan till mvc-kursen på BTH 2024. Allting sparas sedan i detta git-repo.
+En webbplats byggd med PHP-ramverkert Symfony. Innehåller me-sidan till mvc-kursen på BTH 2024. Innehåller nu också slutprojekt i kursen. Ligger under fliken "Proj". Allting sparas sedan i detta git-repo.
 
 ## Installation och användning
 
 För att köra projektet lokalt, följ dessa steg:
 
-1. Klona detta repository till din lokala maskin med följande kommando(OBS!! SSH):
+1. Klona detta repository till din lokala maskin med följande kommando:
 
    ```bash
    git clone git@github.com:jkberiksson/bth-mvc.git
