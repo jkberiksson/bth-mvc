@@ -117,17 +117,6 @@ class Blackjack
     }
 
     /**
-     * Handles the double action for a player.
-     *
-     * @param int $playerIndex The index of the player.
-     */
-    public function doublePlayer(int $playerIndex): void
-    {
-        $this->hitPlayer($playerIndex);
-        $this->standPlayer($playerIndex);
-    }
-
-    /**
      * Calculates the current value of a hand.
      *
      * @param array $hand The hand to calculate the value for.
@@ -209,15 +198,15 @@ class Blackjack
         foreach ($this->playerHands as $index => $playerHand) {
             $playerHandValue = $this->calculateHandValue($playerHand);
             if ($playerHandValue > 21) {
-                $results[$index] = 'Lose (Bust)';
+                $results[$index] = 'loss';
             } elseif ($dealerHandValue > 21) {
-                $results[$index] = 'Win (Dealer Bust)';
+                $results[$index] = 'win';
             } elseif ($playerHandValue > $dealerHandValue) {
-                $results[$index] = 'Win';
+                $results[$index] = 'win';
             } elseif ($playerHandValue < $dealerHandValue) {
-                $results[$index] = 'Lose';
+                $results[$index] = 'loss';
             } else {
-                $results[$index] = 'Tie';
+                $results[$index] = 'push';
             }
         }
 

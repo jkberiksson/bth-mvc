@@ -1,6 +1,6 @@
 {% extends "proj/base.html.twig" %}
 
-{% block title %}Proj{% endblock %}
+{% block title %}Home - Blackjack{% endblock %}
 
 {% block body %}
     <h1>Welcome to Blackjack!</h1>
@@ -16,13 +16,15 @@
     </ul>
 
     <h2>Start a New Game</h2>
-    <form action="{{ path('proj/game') }}" method="get">
-        <label for="numPlayers">Number of Players (1-3):</label>
-        <select id="numPlayers" name="numPlayers">
-            <option value="1">1 Player</option>
-            <option value="2">2 Players</option>
-            <option value="3">3 Players</option>
-        </select>
-        <button type="submit">Start Game</button>
+     <form action="{{ path('proj/game') }}" method="get" class="styled-form">
+        <div class="form-group">
+            <label for="playerName">Player Name:</label>
+            <input type="text" id="playerName" name="playerName" required>
+        </div>
+        <div class="form-group">
+            <label for="balance">Balance:</label>
+            <input type="number" id="balance" name="balance" min="1" required>
+        </div>
+        <button type="submit" class="form-button">Start Game</button>
     </form>
 {% endblock %}

@@ -27,38 +27,67 @@ class ProjController extends AbstractController
     #[Route('/proj/game', name: "proj/game")]
     public function projGame(Request $request, SessionInterface $session): Response
     {
-        $numPlayers = $session->get("numPlayers");
+        $numHands = $session->get("numHands");
         $blackjack = $session->get("blackjack");
+        $playerName = $session->get("playerName");
+        $balance = $session->get("balance");
+        $bet = $session->get("bet");
+        $activeGame = $session->get("activeGame");
 
-        if (!$numPlayers) {
-            $numPlayers = (int)$request->query->get('numPlayers', 1);
-            $session->set("numPlayers", $numPlayers);
+        if (!$playerName) {
+            $playerName = $request->query->get('playerName');
+            $session->set("playerName", $playerName);
         }
 
-        if (!$blackjack) {
-            $blackjack = new Blackjack($numPlayers);
-            $session->set("blackjack", $blackjack);
-            $blackjack->startGame();
+        if (!$balance) {
+            $balance = $request->query->get('balance');
+            $session->set("balance", $balance);
         }
 
-        $playerHands = $blackjack->getPlayerHands();
-        $dealerHand = $blackjack->getDealerHand();
-
+        $playerHands = [];
+        $dealerHand = [];
         $playerHandsValue = [];
-        $dealerHandValue = $blackjack->calculateHandValue($dealerHand);
-
-        foreach ($playerHands as $playerHand) {
-            $playerHandsValue[] = $blackjack->calculateHandValue($playerHand);
-        }
-
+        $dealerHandValue = 0;
         $results = [];
+        $playersStood = [];
 
-        if ($blackjack->allPlayersStood()) {
-            $blackjack->dealerPlay();
+        if ($activeGame) {
+            if (!$blackjack) {
+                $blackjack = new Blackjack($numHands);
+                $session->set("blackjack", $blackjack);
+                $blackjack->startGame();
+            } else {
+                $blackjack = $session->get("blackjack");
+            }
+
+            $playerHands = $blackjack->getPlayerHands();
             $dealerHand = $blackjack->getDealerHand();
+
+            $playerHandsValue = [];
             $dealerHandValue = $blackjack->calculateHandValue($dealerHand);
 
-            $results = $blackjack->determineWinners();
+            foreach ($playerHands as $playerHand) {
+                $playerHandsValue[] = $blackjack->calculateHandValue($playerHand);
+            }
+
+            if ($blackjack->allPlayersStood()) {
+                $blackjack->dealerPlay();
+                $dealerHand = $blackjack->getDealerHand();
+                $dealerHandValue = $blackjack->calculateHandValue($dealerHand);
+
+                $results = $blackjack->determineWinners();
+
+                foreach ($results as $result) {
+                    if ($result === 'win') {
+                        $balance += $bet * 2;
+                    } elseif ($result === 'push') {
+                        $balance += $bet;
+                    }
+                }
+                $session->set("balance", $balance);
+            }
+
+            $playersStood = $blackjack->getPlayersStood();
         }
 
         return $this->render('proj/game.html.twig', [
@@ -66,11 +95,36 @@ class ProjController extends AbstractController
             'dealerHand' => $dealerHand,
             'playerHandsValue' => $playerHandsValue,
             'dealerHandValue' => $dealerHandValue,
-            'numPlayers' => $numPlayers,
+            'numHands' => $numHands,
             'results' => $results,
-            'playersStood' => $blackjack->getPlayersStood(),
+            'playersStood' => $playersStood,
+            'playerName' => $playerName,
+            'balance' => $balance,
+            'bet' => $bet,
+            'activeGame' => $activeGame,
         ]);
     }
+
+
+
+    #[Route('/proj/game/post', name: "proj/game/post", methods: ["POST"])]
+    public function projGamePost(Request $request, SessionInterface $session): Response
+    {
+        $bet = (int)$request->request->get('bet');
+        $numHands = (int)$request->request->get('numHands');
+        $balance = (int)$session->get("balance");
+
+        $totalBet = $bet * $numHands;
+        $updatedBalance = $balance - $totalBet;
+
+        $session->set("bet", $bet);
+        $session->set("numHands", $numHands);
+        $session->set("balance", $updatedBalance);
+        $session->set("activeGame", true);
+
+        return $this->redirectToRoute('proj/game');
+    }
+
 
     #[Route('/proj/hit/{player}', name: "proj/hit")]
     public function projGameHit(SessionInterface $session, int $player): Response
@@ -92,21 +146,18 @@ class ProjController extends AbstractController
         return $this->redirectToRoute('proj/game');
     }
 
-    #[Route('/proj/double/{player}', name: "proj/double")]
-    public function projGameDouble(SessionInterface $session, int $player): Response
+    #[Route('/proj/play/again', name: "proj/play/again")]
+    public function sessionDeleteGame(SessionInterface $session): Response
     {
-        $blackjack = $session->get("blackjack");
-        $blackjack->doublePlayer($player);
-        $session->set("blackjack", $blackjack);
+        $numHands = $session->get("numHands");
+        $playerName = $session->get("playerName");
+        $balance = $session->get("balance");
 
-        return $this->redirectToRoute('proj/game');
-    }
-
-    #[Route('/proj/session/delete/{numPlayers}', name: "proj/session/delete")]
-    public function sessionDeleteGame(SessionInterface $session, int $numPlayers): Response
-    {
         $session->clear();
-        $session->set("numPlayers", $numPlayers);
+
+        $session->set("numHands", $numHands);
+        $session->set("playerName", $playerName);
+        $session->set("balance", $balance);
         return $this->redirectToRoute('proj/game');
     }
 }
