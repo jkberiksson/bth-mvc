@@ -2,6 +2,9 @@
 
 namespace App\Proj;
 
+/**
+ * Represents an individual playingcard.
+ */
 class Card
 {
     /**

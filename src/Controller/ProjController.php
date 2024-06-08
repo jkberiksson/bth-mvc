@@ -105,8 +105,6 @@ class ProjController extends AbstractController
         ]);
     }
 
-
-
     #[Route('/proj/game/post', name: "proj/game/post", methods: ["POST"])]
     public function projGamePost(Request $request, SessionInterface $session): Response
     {
@@ -124,7 +122,6 @@ class ProjController extends AbstractController
 
         return $this->redirectToRoute('proj/game');
     }
-
 
     #[Route('/proj/hit/{player}', name: "proj/hit")]
     public function projGameHit(SessionInterface $session, int $player): Response

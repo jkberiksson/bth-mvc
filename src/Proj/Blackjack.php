@@ -3,42 +3,37 @@
 namespace App\Proj;
 
 use App\Proj\Deck;
+use App\Proj\Card;
 
 /**
- * Class Blackjack represents a simple implementation of the Blackjack game.
+ * Class Blackjack represents a implementation of the Blackjack game.
  */
 class Blackjack
 {
     /** @var Deck The deck of cards used in the game. */
-    private $deck;
+    private Deck $deck;
 
-    /** @var array The hands of all players. */
-    private $playerHands;
+    /** @var (Card|null)[][] The hands of the player. */
+    private array $playerHands = [];
 
-    /** @var array The dealer's hand. */
-    private $dealerHand;
+    /** @var (Card|null)[] The dealer's hand. */
+    private array $dealerHand = [];
 
-    /** @var int The number of players in the game. */
-    private $numPlayers;
-
-    /** @var array A boolean array to track if players have stood. */
-    private $playersStood;
+    /** @var bool[] A boolean array to track if players have stood. */
+    private array $playersStood;
 
     /**
      * Constructs a new Blackjack instance.
      *
-     * @param int $numPlayers The number of players in the game.
+     * @param int $numHands The number of hands in the game.
      */
-    public function __construct(int $numPlayers)
+    public function __construct(int $numHands)
     {
         $this->deck = new Deck();
-        $this->playerHands = [];
-        $this->dealerHand = [];
-        $this->numPlayers = $numPlayers;
-        $this->playersStood = array_fill(0, $numPlayers, false);
+        $this->playersStood = array_fill(0, $numHands, false);
 
         // Initialize hands for all players
-        for ($i = 0; $i < $numPlayers; $i++) {
+        for ($i = 0; $i < $numHands; $i++) {
             $this->playerHands[$i] = [];
         }
     }
@@ -55,7 +50,7 @@ class Blackjack
             foreach ($this->playerHands as $playerIndex => &$hand) {
                 $hand[] = $this->deck->drawCard();
                 $handValue = $this->calculateHandValue($hand);
-                if ($handValue == 21) {
+                if ($handValue === 21) {
                     $this->standPlayer($playerIndex);
                 }
             }
@@ -66,7 +61,7 @@ class Blackjack
     /**
      * Retrieves the hands of all players.
      *
-     * @return array The hands of all players.
+     * @return (Card|null)[][] The hands of all players.
      */
     public function getPlayerHands(): array
     {
@@ -76,9 +71,9 @@ class Blackjack
     /**
      * Retrieves the dealer's hand.
      *
-     * @return array The dealer's hand.
+     * @return Card[]|null[] The dealer's hand, or null if the hand is empty.
      */
-    public function getDealerHand(): array
+    public function getDealerHand(): ?array
     {
         return $this->dealerHand;
     }
@@ -90,11 +85,14 @@ class Blackjack
      */
     public function hitPlayer(int $playerIndex): void
     {
-        $this->playerHands[$playerIndex][] = $this->deck->drawCard();
+        $card = $this->deck->drawCard();
+        if ($card instanceof Card) {
+            $this->playerHands[$playerIndex][] = $card;
 
-        $handValue = $this->calculateHandValue($this->playerHands[$playerIndex]);
-        if ($handValue > 21 || $handValue == 21) {
-            $this->standPlayer($playerIndex);
+            $handValue = $this->calculateHandValue($this->playerHands[$playerIndex]);
+            if ($handValue > 21 || $handValue === 21) {
+                $this->standPlayer($playerIndex);
+            }
         }
     }
 
@@ -103,7 +101,10 @@ class Blackjack
      */
     public function hitDealer(): void
     {
-        $this->dealerHand[] = $this->deck->drawCard();
+        $card = $this->deck->drawCard();
+        if ($card instanceof Card) {
+            $this->dealerHand[] = $card;
+        }
     }
 
     /**
@@ -119,7 +120,7 @@ class Blackjack
     /**
      * Calculates the current value of a hand.
      *
-     * @param array $hand The hand to calculate the value for.
+     * @param (Card|null)[] $hand The hand to calculate the value for.
      *
      * @return int The current value of the hand.
      */
@@ -129,21 +130,19 @@ class Blackjack
         $aceCount = 0;
 
         foreach ($hand as $card) {
-            $rank = $card->getRank();
-            if ($rank === 'A') {
-                $aceCount++;
-                // By default, consider ace as 11
-                $value += 11;
-            } elseif (in_array($rank, ['J', 'Q', 'K'])) {
-                // Face cards have value 10
-                $value += 10;
-            } else {
-                // Other cards have their numeric value
-                $value += intval($rank);
+            if ($card instanceof Card) {
+                $rank = $card->getRank();
+                if ($rank === 'A') {
+                    $aceCount++;
+                    $value += 11;
+                } elseif (in_array($rank, ['J', 'Q', 'K'], true)) {
+                    $value += 10;
+                } else {
+                    $value += intval($rank);
+                }
             }
         }
 
-        // Adjust value if there are aces and total value exceeds 21
         while ($aceCount > 0 && $value > 21) {
             $value -= 10;
             $aceCount--;
@@ -159,21 +158,19 @@ class Blackjack
      */
     public function allPlayersStood(): bool
     {
-        return !in_array(false, $this->playersStood);
+        return !in_array(false, $this->playersStood, true);
     }
-
 
     /**
      * Retrieves an array indicating whether each player has stood.
      *
-     * @return array An array representing the standing status of each player.
-     * Each element is a boolean value indicating whether the corresponding player has stood.
+     * @return bool[] An array representing the standing status of each player.
+     *               Each element is a boolean value indicating whether the corresponding player has stood.
      */
     public function getPlayersStood(): array
     {
         return $this->playersStood;
     }
-
 
     /**
      * Dealer plays according to Blackjack rules.
@@ -188,7 +185,7 @@ class Blackjack
     /**
      * Determines the result of the game.
      *
-     * @return array The result of the game for each player.
+     * @return string[] The result of the game for each player.
      */
     public function determineWinners(): array
     {
@@ -211,5 +208,26 @@ class Blackjack
         }
 
         return $results;
+    }
+
+    /**
+     * Sets the hand of a specific player.
+     *
+     * @param int $playerIndex The index of the player.
+     * @param Card[] $hand The hand to set for the player.
+     */
+    public function setPlayerHand(int $playerIndex, array $hand): void
+    {
+        $this->playerHands[$playerIndex] = $hand;
+    }
+
+    /**
+     * Sets the dealer's hand.
+     *
+     * @param Card[] $hand The hand to set for the dealer.
+     */
+    public function setDealerHand(array $hand): void
+    {
+        $this->dealerHand = $hand;
     }
 }

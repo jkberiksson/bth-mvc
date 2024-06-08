@@ -44,4 +44,14 @@ class Deck
     {
         return array_pop($this->cards);
     }
+
+    /**
+     * Gets the cards in the deck.
+     *
+     * @return Card[] The cards in the deck.
+     */
+    public function getCards(): array
+    {
+        return $this->cards;
+    }
 }
