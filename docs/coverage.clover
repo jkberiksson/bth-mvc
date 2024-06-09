@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1717862916">
-  <project timestamp="1717862916">
+<coverage generated="1717939846">
+  <project timestamp="1717939846">
     <file name="/Users/jakoberiksson/dbwebb-kurser/mvc/me/report/src/Blackjack/Blackjack.php">
       <class name="App\Blackjack\Blackjack" namespace="global">
         <metrics complexity="21" methods="11" coveredmethods="9" conditionals="0" coveredconditionals="0" statements="38" coveredstatements="34" elements="49" coveredelements="43"/>
@@ -606,7 +606,7 @@
     </file>
     <file name="/Users/jakoberiksson/dbwebb-kurser/mvc/me/report/src/Proj/Blackjack.php">
       <class name="App\Proj\Blackjack" namespace="global">
-        <metrics complexity="34" methods="14" coveredmethods="13" conditionals="0" coveredconditionals="0" statements="59" coveredstatements="58" elements="73" coveredelements="71"/>
+        <metrics complexity="34" methods="14" coveredmethods="11" conditionals="0" coveredconditionals="0" statements="59" coveredstatements="55" elements="73" coveredelements="66"/>
       </class>
       <line num="30" type="method" name="__construct" visibility="public" complexity="2" crap="2" count="11"/>
       <line num="32" type="stmt" count="11"/>
@@ -626,34 +626,34 @@
       <line num="68" type="stmt" count="3"/>
       <line num="76" type="method" name="getDealerHand" visibility="public" complexity="1" crap="1" count="3"/>
       <line num="78" type="stmt" count="3"/>
-      <line num="86" type="method" name="hitPlayer" visibility="public" complexity="4" crap="4" count="1"/>
+      <line num="86" type="method" name="hitPlayer" visibility="public" complexity="4" crap="4.07" count="1"/>
       <line num="88" type="stmt" count="1"/>
       <line num="89" type="stmt" count="1"/>
       <line num="90" type="stmt" count="1"/>
       <line num="92" type="stmt" count="1"/>
       <line num="93" type="stmt" count="1"/>
-      <line num="94" type="stmt" count="1"/>
+      <line num="94" type="stmt" count="0"/>
       <line num="102" type="method" name="hitDealer" visibility="public" complexity="2" crap="2" count="2"/>
       <line num="104" type="stmt" count="2"/>
       <line num="105" type="stmt" count="2"/>
       <line num="106" type="stmt" count="2"/>
-      <line num="115" type="method" name="standPlayer" visibility="public" complexity="1" crap="1" count="2"/>
-      <line num="117" type="stmt" count="2"/>
-      <line num="127" type="method" name="calculateHandValue" visibility="public" complexity="7" crap="7" count="9"/>
+      <line num="115" type="method" name="standPlayer" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="117" type="stmt" count="1"/>
+      <line num="127" type="method" name="calculateHandValue" visibility="public" complexity="7" crap="7.12" count="9"/>
       <line num="129" type="stmt" count="9"/>
       <line num="130" type="stmt" count="9"/>
       <line num="132" type="stmt" count="9"/>
       <line num="133" type="stmt" count="9"/>
       <line num="134" type="stmt" count="9"/>
       <line num="135" type="stmt" count="9"/>
-      <line num="136" type="stmt" count="3"/>
-      <line num="137" type="stmt" count="3"/>
+      <line num="136" type="stmt" count="1"/>
+      <line num="137" type="stmt" count="1"/>
       <line num="138" type="stmt" count="9"/>
       <line num="139" type="stmt" count="9"/>
-      <line num="141" type="stmt" count="7"/>
+      <line num="141" type="stmt" count="9"/>
       <line num="146" type="stmt" count="9"/>
-      <line num="147" type="stmt" count="1"/>
-      <line num="148" type="stmt" count="1"/>
+      <line num="147" type="stmt" count="0"/>
+      <line num="148" type="stmt" count="0"/>
       <line num="151" type="stmt" count="9"/>
       <line num="159" type="method" name="allPlayersStood" visibility="public" complexity="1" crap="1" count="1"/>
       <line num="161" type="stmt" count="1"/>
@@ -681,7 +681,7 @@
       <line num="221" type="stmt" count="5"/>
       <line num="229" type="method" name="setDealerHand" visibility="public" complexity="1" crap="1" count="5"/>
       <line num="231" type="stmt" count="5"/>
-      <metrics loc="234" ncloc="157" classes="1" methods="14" coveredmethods="13" conditionals="0" coveredconditionals="0" statements="59" coveredstatements="58" elements="73" coveredelements="71"/>
+      <metrics loc="234" ncloc="157" classes="1" methods="14" coveredmethods="11" conditionals="0" coveredconditionals="0" statements="59" coveredstatements="55" elements="73" coveredelements="66"/>
     </file>
     <file name="/Users/jakoberiksson/dbwebb-kurser/mvc/me/report/src/Proj/Card.php">
       <class name="App\Proj\Card" namespace="global">
@@ -722,6 +722,6 @@
       <line num="16" type="stmt" count="0"/>
       <metrics loc="44" ncloc="18" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="0" elements="2" coveredelements="0"/>
     </file>
-    <metrics files="24" loc="1592" ncloc="1382" classes="23" methods="91" coveredmethods="40" conditionals="0" coveredconditionals="0" statements="486" coveredstatements="122" elements="577" coveredelements="162"/>
+    <metrics files="24" loc="1592" ncloc="1382" classes="23" methods="91" coveredmethods="38" conditionals="0" coveredconditionals="0" statements="486" coveredstatements="119" elements="577" coveredelements="157"/>
   </project>
 </coverage>
